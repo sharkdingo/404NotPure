@@ -1,2 +1,4 @@
-package com.example.tomatomall.util;public class SecurityUtil {
+package com.example.tomatomall.util;
+
+public class SecurityUtil {
 }

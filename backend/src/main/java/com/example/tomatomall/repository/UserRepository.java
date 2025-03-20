@@ -1,2 +1,4 @@
-package com.example.tomatomall.repository;public interface UserRepository {
+package com.example.tomatomall.repository;
+
+public interface UserRepository{
 }
