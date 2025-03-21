@@ -1,5 +1,6 @@
 package com.example.tomatomall.configure;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -7,19 +8,16 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class MyWebMvcConfig implements WebMvcConfigurer {
-    @Autowired
-    LoginInterceptor loginInterceptor;
+
+    @Bean
+    public LoginInterceptor loginInterceptor() {
+        return new LoginInterceptor();
+    }
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(loginInterceptor)
-                .addPathPatterns("/**")
-                .excludePathPatterns("/api/users/register")
-                .excludePathPatterns("/api/users/login")
-                .excludePathPatterns("/api/stores/{storeId}")
-                .excludePathPatterns("/api/stores/store_create")
-                .excludePathPatterns("/api/images/upload")
-                .order(1);
+        registry.addInterceptor(loginInterceptor())
+                .addPathPatterns("/**");
     }
 
 }

@@ -24,6 +24,8 @@ public class AccountVO {
 
   private String location;
 
+  private String password;
+
   public Account toPO() {
     Account account = new Account();
     account.setId(id);
@@ -33,6 +35,7 @@ public class AccountVO {
     account.setTelephone(telephone);
     account.setEmail(email);
     account.setLocation(location);
+    account.setPassword(password);
     return account;
   }
 }

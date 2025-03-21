@@ -55,6 +55,7 @@ public class Account {
     vo.setTelephone(this.telephone);
     vo.setEmail(this.email);
     vo.setLocation(this.location);
+    vo.setPassword(this.password);
     return vo;
   }
 }
