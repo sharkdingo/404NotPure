@@ -72,7 +72,7 @@ public class AccountController {
         }
 
         System.out.println("Username from DTO: " + dto.getUsername()); // 调试输出
-        if (!dto.getUsername().equals(currentUser)) {
+        if (!dto.getUsername().equals(currentUser)){
             throw TomatoException.noPermission();
         }
         return Response.buildSuccess(accountService.update(dto));
