@@ -31,4 +31,8 @@ public class TomatoException extends RuntimeException{
         return new TomatoException("上传失败！","500");
     }
 
+    public static TomatoException userNotExist(){
+        return new TomatoException("用户不存在！","404");
+    }
+
 }
