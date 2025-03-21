@@ -35,4 +35,9 @@ public class TomatoException extends RuntimeException{
         return new TomatoException("用户不存在！","404");
     }
 
+    // 权限不足报错
+    public static TomatoException noPermission() {
+        return new TomatoException("无权限!", "403");
+    }
+
 }

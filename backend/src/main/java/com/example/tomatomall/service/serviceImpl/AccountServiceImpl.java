@@ -1,5 +1,6 @@
 package com.example.tomatomall.service.serviceImpl;
 
+import com.example.tomatomall.dto.AccountUpdateDTO;
 import com.example.tomatomall.exception.TomatoException;
 import com.example.tomatomall.po.Account;
 import com.example.tomatomall.repository.UserRepository;
@@ -53,5 +54,18 @@ public class AccountServiceImpl implements AccountService {
             throw TomatoException.userNotExist();
         }
         return account.toVO();
+    }
+
+    @Override
+    public String update(AccountUpdateDTO accountUpdateDTO) {
+        Account account = userRepository.findByUsername(accountUpdateDTO.getUsername()).orElseThrow(TomatoException::userNotExist);
+        if (accountUpdateDTO.getName() != null) account.setName(accountUpdateDTO.getName());
+        if (accountUpdateDTO.getAvatar() != null) account.setAvatar(accountUpdateDTO.getAvatar());
+        if (accountUpdateDTO.getTelephone() != null) account.setTelephone(accountUpdateDTO.getTelephone());
+        if (accountUpdateDTO.getEmail() != null) account.setEmail(accountUpdateDTO.getEmail());
+        if (accountUpdateDTO.getLocation() != null) account.setLocation(accountUpdateDTO.getLocation());
+
+        userRepository.save(account);
+        return "用户信息已更新";
     }
 }
