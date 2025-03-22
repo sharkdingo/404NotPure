@@ -37,13 +37,18 @@ public class AccountServiceImpl implements AccountService {
         return "创建用户成功";
     }
 
+    //支持手机号和用户名登录
     public String login(AccountVO accountVO) {
         Account tmp=accountVO.toPO();
-        String username = tmp.getUsername();
+        String usernameOrTelephone = tmp.getUsername();
         String rawPassword = tmp.getPassword();
-        Optional<Account> account = userRepository.findByUsername(username);
+        Optional<Account> account = userRepository.findByUsername(usernameOrTelephone);
         if (account.isPresent() && passwordEncoder.matches(rawPassword, account.get().getPassword())) {
-            return tokenUtil.generateToken(username);
+            return tokenUtil.generateToken(usernameOrTelephone);
+        }
+        account=userRepository.findByTelephone(usernameOrTelephone);
+        if (account.isPresent() && passwordEncoder.matches(rawPassword, account.get().getPassword())) {
+            return tokenUtil.generateToken(usernameOrTelephone);
         }
         throw TomatoException.loginFailure();
     }
