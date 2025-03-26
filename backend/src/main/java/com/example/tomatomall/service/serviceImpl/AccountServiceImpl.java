@@ -6,6 +6,7 @@ import com.example.tomatomall.po.Account;
 import com.example.tomatomall.repository.UserRepository;
 import com.example.tomatomall.service.AccountService;
 import com.example.tomatomall.util.TokenUtil;
+import com.example.tomatomall.vo.AccountSimpleVO;
 import com.example.tomatomall.vo.AccountVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -53,12 +54,15 @@ public class AccountServiceImpl implements AccountService {
         throw TomatoException.loginFailure();
     }
 
-    public AccountVO getAccount(String username) {
-        Account account = userRepository.findByUsername(username).get();
-        if (account == null) {
+    public AccountSimpleVO getAccount(String username) {
+        Optional<Account> account = userRepository.findByUsername(username);
+        if (!account.isPresent()) {
             throw TomatoException.userNotExist();
         }
-        return account.toVO();
+        if(account.get()==null){
+            throw TomatoException.userNotExist();
+        }
+        return account.get().toSimpleVO();
     }
 
     @Override

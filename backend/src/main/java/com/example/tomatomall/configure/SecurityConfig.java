@@ -25,7 +25,8 @@ public class SecurityConfig {
                                 new AntPathRequestMatcher("/api/accounts", "POST"),
                                 new AntPathRequestMatcher("/api/accounts/login", "POST"),
                                 new AntPathRequestMatcher("/api/accounts/{username}", "GET"),
-                                new AntPathRequestMatcher("/api/accounts/", "PUT")
+                                new AntPathRequestMatcher("/api/accounts/", "PUT"),
+                                new AntPathRequestMatcher("/api/images","POST")
                         ).permitAll()
                         .anyRequest().authenticated()
                 )
