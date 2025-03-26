@@ -16,6 +16,8 @@ public class AccountVO {
 
   private String name;
 
+  private String role;
+
   private String avatar;
 
   private String telephone;
@@ -31,6 +33,7 @@ public class AccountVO {
     account.setId(id);
     account.setUsername(username);
     account.setName(name);
+    account.setRole(role);
     account.setAvatar(avatar);
     account.setTelephone(telephone);
     account.setEmail(email);
@@ -38,4 +41,5 @@ public class AccountVO {
     account.setPassword(password);
     return account;
   }
+
 }
