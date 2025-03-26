@@ -1,5 +1,6 @@
 package com.example.tomatomall.po;
 
+import com.example.tomatomall.vo.AccountSimpleVO;
 import com.example.tomatomall.vo.AccountVO;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,6 +31,9 @@ public class Account {
   @Column(name = "name", nullable = false, length = 50)
   private String name;
 
+  @Column(name = "role", nullable = false)
+  private String role;
+
   @Basic
   @Column(name = "avatar", length = 255)
   private String avatar;
@@ -56,6 +60,19 @@ public class Account {
     vo.setEmail(this.email);
     vo.setLocation(this.location);
     vo.setPassword(this.password);
+    vo.setRole(this.role);
+    return vo;
+  }
+
+  public AccountSimpleVO toSimpleVO() {
+    AccountSimpleVO vo = new AccountSimpleVO();
+    vo.setUsername(this.username);
+    vo.setName(this.name);
+    vo.setRole(this.role);
+    vo.setAvatar(this.avatar);
+    vo.setTelephone(this.telephone);
+    vo.setEmail(this.email);
+    vo.setLocation(this.location);
     return vo;
   }
 }

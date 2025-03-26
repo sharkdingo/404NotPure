@@ -3,6 +3,7 @@ package com.example.tomatomall.service;
 
 import com.example.tomatomall.dto.AccountUpdateDTO;
 import com.example.tomatomall.po.Account;
+import com.example.tomatomall.vo.AccountSimpleVO;
 import com.example.tomatomall.vo.AccountVO;
 
 
@@ -14,7 +15,7 @@ public interface AccountService {
 
     public String login(AccountVO accountVO);
 
-    public AccountVO getAccount(String username);
+    public AccountSimpleVO getAccount(String username);
 
     public String update(AccountUpdateDTO accountUpdateDTO);
 

@@ -4,6 +4,7 @@ import com.example.tomatomall.dto.AccountUpdateDTO;
 import com.example.tomatomall.exception.TomatoException;
 import com.example.tomatomall.po.Account;
 import com.example.tomatomall.service.AccountService;
+import com.example.tomatomall.vo.AccountSimpleVO;
 import com.example.tomatomall.vo.AccountVO;
 import com.example.tomatomall.vo.Response;
 import com.example.tomatomall.util.TokenUtil;
@@ -28,7 +29,7 @@ public class AccountController {
      */
     @GetMapping("/{username}")
     public Response getUser(@PathVariable String username) {
-        AccountVO accountVO = accountService.getAccount(username);
+        AccountSimpleVO accountVO = accountService.getAccount(username);
         return Response.buildSuccess(accountVO);
     }
 
