@@ -29,4 +29,6 @@ public class AccountUpdateDTO {
   private String email;
 
   private String location;
+
+  private String role;
 }

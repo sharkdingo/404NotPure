@@ -73,6 +73,7 @@ public class AccountServiceImpl implements AccountService {
         if (accountUpdateDTO.getTelephone() != null) account.setTelephone(accountUpdateDTO.getTelephone());
         if (accountUpdateDTO.getEmail() != null) account.setEmail(accountUpdateDTO.getEmail());
         if (accountUpdateDTO.getLocation() != null) account.setLocation(accountUpdateDTO.getLocation());
+        if (accountUpdateDTO.getRole() != null) account.setRole(accountUpdateDTO.getRole());
 
         userRepository.save(account);
         return "用户信息已更新";
