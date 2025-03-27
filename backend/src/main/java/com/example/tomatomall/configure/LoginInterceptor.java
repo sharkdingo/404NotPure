@@ -28,18 +28,29 @@ public class LoginInterceptor implements HandlerInterceptor {
         }
 
         // 从Cookie中获取Token
+        String token =null;
         Cookie[] cookies = request.getCookies();
         if (cookies != null) {
             for (Cookie cookie : cookies) {
                 if ("token".equals(cookie.getName())) {
-                    String token = cookie.getValue();
-                    // 验证Token
-                    if (tokenUtil.verifyToken(token)) {
-                        return true;
-                    }
+                    token = cookie.getValue();
+                    break;
                 }
             }
         }
-        throw TomatoException.notLogin();
+        if (token == null || !tokenUtil.verifyToken(token)) {
+            throw TomatoException.notLogin();
+        }
+
+        if (uri.startsWith("/api/accounts/")) {
+            String[] parts = uri.split("/");
+            String requestUsername = parts[parts.length - 1]; // 提取路径末尾的username
+            String tokenUsername = TokenUtil.getUsernameFromToken(token);
+            logger.info("Token username: {}, Request username: {}", tokenUsername, requestUsername);
+            if (!requestUsername.equals(tokenUsername)) {
+                throw TomatoException.notLogin();
+            }
+        }
+        return true;
     }
 }

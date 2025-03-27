@@ -35,7 +35,7 @@ public class AccountServiceImpl implements AccountService {
         // 加密密码
         account.setPassword(passwordEncoder.encode(account.getPassword()));
         userRepository.save(account);
-        return "创建用户成功";
+        return "注册成功";
     }
 
     //支持手机号和用户名登录
