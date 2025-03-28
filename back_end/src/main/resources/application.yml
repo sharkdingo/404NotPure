@@ -11,6 +11,14 @@ spring:
         dialect: org.hibernate.dialect.MySQL8Dialect  # ✅ 加上这行
   main:
     allow-bean-definition-overriding: true
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB     # 或更大
+      max-request-size: 50MB # 可选：整个请求大小
 
 server:
   port: 8080
+  error:
+    include-message: always
+    include-binding-errors: always
